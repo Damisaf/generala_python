@@ -81,6 +81,27 @@ import random
 # todas las funciones que utilice
 
 
+def tirar_dados(cuantos_dados):
+    lista_dados = []
+    for i in range(cuantos_dados):
+        dado = random.randint(1, 6)
+        lista_dados.append(dado)
+    return lista_dados
+
+
+def sugerido(lista_dados):
+    max_repeticiones = max(lista_dados, key=lista_dados.count)
+    return max_repeticiones
+
+
+def guardar_mas_repetido(lista_dados, numero_objetivo, dados_guardados):
+    for dado in lista_dados:
+        if dado == numero_objetivo:
+            dados_guardados.append(dado)
+
+    return dados_guardados
+
+
 # --------------------------------
 
 if __name__ == '__main__':
@@ -88,3 +109,37 @@ if __name__ == '__main__':
     # A partir de aquí escriba el código que
     # invoca a las funciones y resuelve el enunciado
     # Leer el enunciado con atención y consultar cualquier duda
+    print("Que tipo de Juego queres?")
+    print("[3] - a 3 tiros")
+    print("[G] - Hasta hacer Generala")
+    while True:
+        tipo_juego = input("Ingrese opcion [3/G]")
+        if tipo_juego != "3" and tipo_juego != "G" and tipo_juego != "g":
+            continue
+        break
+    numero_tirada = 1
+    dados_a_tirar = 5
+    dados_guardados = []
+    while True:
+        print("presione <Enter> para hacer su tiro nº ", numero_tirada)
+        dados_tirados = tirar_dados(dados_a_tirar)
+        mostrar_tirada(dados_tirados)
+        elegir_dado()        
+        mostrar_como_va()
+        if numero_tirada == 3 and tipo_juego == "3":
+            despedida()
+            break
+        else:            
+            if hizo_generala():
+                despedida()
+                break
+            else:
+                numero_tirada += 1
+    print("desea otra partida? [s/n]")
+
+
+
+
+
+
+
