@@ -91,6 +91,7 @@ def tirar_dados(cuantos_dados):
 
 def sugerido(lista_dados):
     mas_repetido = max(lista_dados, key=lista_dados.count)
+    #cuantos = lista_dados.count(mas_repetido)    
     return mas_repetido
 
 
@@ -143,6 +144,12 @@ if __name__ == '__main__':
         dados_tirados = tirar_dados(dados_a_tirar)
         mostrar("Tu tirada: ", dados_tirados)
         te_sugiero = sugerido(dados_tirados)
+        cuantos = dados_tirados.count(te_sugiero)
+        if not (cuantos > len(dados_guardados)):            
+            if dados_tirados.count(dados_guardados[0]) > 0:
+                te_sugiero = dados_guardados[0]
+            else:
+                te_sugiero = 0                        
         print("que numero elegis? (sugerido: ", te_sugiero, ")  [0]-ninguno")
         while True:
             elegido = input()
